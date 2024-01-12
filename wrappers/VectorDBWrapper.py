@@ -1,4 +1,4 @@
-from wrappers.Config import Config
+from config.Config import Config
 
 class VectorDBWrapper:
 
