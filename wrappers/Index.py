@@ -1,20 +1,19 @@
-import pinecone
 
 class Index:
-    def __init__(self, pinecone_instance = pinecone):
-        self.pinecone_instance = pinecone_instance
+    def __init__(self, pinecone):
+        self.pinecone = pinecone
 
     def create_index(self, index_name, dimension, metric):
-        self.pinecone_instance.create_index(index_name, dimension, metric)
+        self.pinecone.create_index(index_name, dimension=dimension, metric=metric)
 
     def describe_index(self, index_name):
-        self.pinecone_instance.describe_index(index_name)
+        self.pinecone.describe_index(index_name)
 
     def describe_index_stats(self, index_name):
-        self.pinecone_instance.Index(index_name).describe_index_stats()
+        self.pinecone.Index(index_name).describe_index_stats()
     
     def delete_index(self, index_name):
-        self.pinecone_instance.delete_index(index_name)
+        self.pinecone.delete_index(index_name)
 
     def list_indexes(self):
-        self.pinecone_instance.list_indexes()
+        self.pinecone.list_indexes()

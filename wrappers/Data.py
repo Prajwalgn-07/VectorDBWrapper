@@ -1,11 +1,9 @@
-import pinecone
-
 class Data:
-    def __init__(self, pinecone_instance = pinecone):
-        self.pinecone_instance = pinecone_instance
+    def __init__(self,pinecone):
+        self.pinecone = pinecone
 
     def upsert(self, index_name, data):
-        self.pinecone_instance.Index(index_name).upsert(data)
+        self.pinecone.Index(index_name).upsert(data)
         
     def query(self, index_name, vector, top_k, include_values=True):
-        return self.pinecone_instance.Index(index_name).query(vector, top_k, include_values)
+        return self.pinecone.Index(index_name).query(vector=vector,top_k = top_k, include_values = include_values)

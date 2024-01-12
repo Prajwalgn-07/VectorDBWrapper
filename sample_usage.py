@@ -1,10 +1,11 @@
-import pinecone
-from wrappers.PineConeWrapper import PineConeWrapper
 from wrappers.Index import Index
 from wrappers.Data import Data
+from wrappers.Config import Config
+import pinecone
 
 print("Getting the pinecone instance")
-pinecone = PineConeWrapper().get_instance()
+config = Config()
+pinecone.init(api_key=config.api_key, environment=config.environment)
 
 print("Creating the index")
 index = Index(pinecone)
@@ -12,7 +13,7 @@ index_name = "quickstart"
 index.create_index(index_name, dimension=8, metric="euclidean")
 
 print("Getting the index stats")
-index.describe_index_stats()
+index.describe_index_stats(index_name)
 
 print("Upserting the data")
 data = Data(pinecone)
@@ -25,7 +26,7 @@ data.upsert(index_name, [
 ])
 
 print("Querying the index")
-print(index.query(
+print(data.query(index_name,
   vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.2, 1.0],
   top_k=3
 ))
