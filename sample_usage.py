@@ -1,11 +1,10 @@
 from wrappers.Index import Index
 from wrappers.Data import Data
-from wrappers.Config import Config
+from wrappers.VectorDBWrapper import VectorDBWrapper
 import pinecone
 
 print("Getting the pinecone instance")
-config = Config()
-pinecone.init(api_key=config.api_key, environment=config.environment)
+VectorDBWrapper().get_instance(pinecone)
 
 print("Creating the index")
 index = Index(pinecone)
